@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
-
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<style type="text/css">
 
 	::selection { background-color: #E13300; color: white; }
@@ -72,13 +72,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="body">
 		<div><font color="red"><?= $mensaje; ?></font></div>
-		<p>Login</p>
-		<form method="post"	action="<?= base_url();?>index.php/login/logear">
-			Usuario: <input type="text" name="usuario"><br>
-			Password: <input type="password" name="password"><br>
-			<input type="submit" name="Entrar" value="Entrar">
-		</form>
-		Si no tienes una cuenta. Crea una <a href="index.php/usuario/formularioRegistrar">Aquí</a>
+		<div class="form-row mt-5">
+			<form method="post"	action="<?= base_url();?>index.php/login/logear">
+				<div class="form-row">
+					Usuario: <input type="text" class="form-control" name="usuario"><br>
+				</div>
+				<div class="form-row">
+					Password: <input type="password" name="password" class="form-control"><br>
+			
+				</div>
+				<div class="form-row mt-2 mb-2">
+					<input type="submit" name="Entrar" value="Entrar" class="form-control btn-info">
+				</div>
+				<div class="form-row">
+					Si no tienes una cuenta. Crea una <a href="<?= base_url(); ?>index.php/usuario/formularioRegistrar/login"> Aquí </a>
+				</div>
+			</form>
+		</div>
 	</div>
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>

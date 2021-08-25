@@ -5,7 +5,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
-
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<style type="text/css">
 	<style type="text/css">
 
 	::selection { background-color: #E13300; color: white; }
@@ -72,40 +73,52 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="body">
 		<div><font color="red"><?=$error ?></font></div>
-		<form method="post"	action="../actualizar">
-			<input type="hidden" name="id" value="<?= $id; ?>">
-			Usuario: <input type="text" name="usuario" autocomplete="off" value="<?= $usuario; ?>"><br>
-			Password: <input type="password" name="password" value="" placeholder="Escriba una contraseña nueva"><br>
-			Rol: <select name="rol">
-				<?php
-					$selected_admin = '';
-					$selected_operario = '';
-					if($rol == 'administrador'){
-						$selected_admin = 'selected';
-					}else{
-						$selected_operario = 'selected';
-					}
-				?>
-				<option <?= $selected_admin; ?>value="adminstrador">Adminstrador</option>
-				<option <?= $selected_operario; ?> value="operario">Operario</option>
-			</select><br>
-			Estado: <select name="estado">
-				<?php
-					$selected_activo = '';
-					$selected_inactivo = '';
-					if($estado == 'activo'){
-						$selected_activo = 'selected';
-					}else{
-						$selected_inactivo = 'selected';
-					}
-				?>
-				<option <?= $selected_activo; ?>value="activo">Activo</option>
-				<option <?= $selected_inactivo; ?> value="inactivo">Inactivo</option>
-			</select><br>
-
-			<input type="submit" name="registrar" value="Actualizar"><br>
-		</form>
-		<a href="javascript: history.go(-1)">Volver</a>
+		<div class="form-row mt-5">
+			<form method="post"	action="../actualizar">
+				<div class="form-row">
+					<input type="hidden" name="id" value="<?= $id; ?>" >
+					Usuario: <input class="form-control" required="required" type="text" name="usuario" autocomplete="off" value="<?= $usuario; ?>">
+				</div><br>
+				<div class="form-row">
+					Password: <input type="password" class="form-control" name="password" value="" placeholder="Escriba una contraseña nueva"><br>
+				</div>
+				<div class="form-row">
+					Rol: <select name="rol" class="form-control">
+						<?php
+							$selected_admin = '';
+							$selected_operario = '';
+							if($rol == 'administrador'){
+								$selected_admin = 'selected';
+							}else{
+								$selected_operario = 'selected';
+							}
+						?>
+						<option <?= $selected_admin; ?>value="administrador">Administrador</option>
+						<option <?= $selected_operario; ?> value="operario">Operario</option>
+					</select><br>
+				</div>
+				<div class="form-row">
+				Estado: <select name="estado" class="form-control">
+					<?php
+						$selected_activo = '';
+						$selected_inactivo = '';
+						if($estado == 'activo'){
+							$selected_activo = 'selected';
+						}else{
+							$selected_inactivo = 'selected';
+						}
+					?>
+					<option <?= $selected_activo; ?> value="activo">Activo</option>
+					<option <?= $selected_inactivo; ?> value="inactivo">Inactivo</option>
+				</select><br>
+				</div>
+				<div class="form-row mt-2">
+					<input type="submit" class="form-control btn-danger" name="registrar" value="Actualizar"><br>
+				</div>
+				
+			</form>
+		</div>
+		<label class="tag-info"><a href="javascript: history.go(-1)">Volver</a></label>
 	</div>
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>

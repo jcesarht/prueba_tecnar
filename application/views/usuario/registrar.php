@@ -5,7 +5,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
-
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<style type="text/css">
 	<style type="text/css">
 
 	::selection { background-color: #E13300; color: white; }
@@ -68,20 +69,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
-	<h1>Logeate a TestNar</h1>
+	<h1>Registra un usuario</h1>
 
 	<div id="body">
 		<div><font color="red"><?=$error ?></font></div>
-		<form method="post"	action="registrar">
-			Usuario: <input type="text" name="usuario" autocomplete="off">
-			Password: <input type="password" name="password" >
-			Rol: <select name="rol">
-				<option value="administrador">Adminstrador</option>
-				<option value="operario">Operario</option>
-			</select>
-			<input type="submit" name="registrar" value="Registrar">
-		</form>
-		<a href="javascript: history.go(-1)">Volver</a>
+		<div class="form-row mt-5">
+			<form method="post"	action="registrar">
+				<div class="form-row">
+					Usuario: <input type="text" class="form-control" name="usuario" autocomplete="off" required="required">
+				</div>
+				<div class="form-row">
+					Password: <input type="password" class="form-control" name="password" required="required">
+				</div>
+				<div class="form-row">
+					Rol: <select name="rol" class="form-control">
+						<option value="administrador">Adminstrador</option>
+						<option value="operario">Operario</option>
+					</select>
+				</div>
+				<div class="form-row mt-3">
+					<input type="submit" class="form-control btn-danger" name="registrar" value="Registrar">
+				</div>
+				<div class="form-row">
+					<strong><a href="<?= $vista_anterior ?>">Volver</a></strong>
+				</div>
+			</form>
+			
+			
+
 	</div>
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>

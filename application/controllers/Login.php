@@ -32,14 +32,24 @@ class Login extends CI_Controller {
 	public function logear(){
 		$usuario = $this->input->post("usuario");
 		$password = $this->input->post("password");
-		$resultado = $this->usuariosModel->consultar($usuario,$password);
-		if($resultado['error'] == false)
+		$resultado = Array();
+		if($usuario != '' || $password != '')
 		{
-			redirect('usuario/dashboard');
-		}else
-		{
-			$info['mensaje'] = $resultado['mensaje'];
-			$this->load->view('login/login',$info);
+			$resultado = $this->usuariosModel->consultar($usuario,$password);	
+			if($resultado['error'] == false)
+			{
+				redirect('usuario/dashboard');
+			}else
+			{
+				$info['mensaje'] = $resultado['mensaje'];
+			}
 		}
+		else
+		{
+			$info['mensaje'] = 'Debe llenar el formulario';
+		}
+		$this->load->view('login/login',$info);
+		//var_dump($resultado);die;
+		
 	}
 }

@@ -8,9 +8,17 @@ class Usuario extends CI_Controller {
 		parent::__construct();
 		$this->load->model('usuariosModel');
 	}
-	public function formularioRegistrar()
+	public function formularioRegistrar($vista)
 	{
 		$info['error'] = '';
+		$info['vista_anterior'] = 'javascript: history.go(-1)';
+		if($vista == 'login')
+		{
+			$info['vista_anterior'] = base_url().'index.php/login/logear';
+		}else if($vista == 'usuario'){
+			$info['vista_anterior'] = base_url().'index.php/usuario/dashboard';
+		}
+		
 		$this->load->view('usuario/registrar',$info);
 	}
 	public function registrar()

@@ -5,6 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
 	<style type="text/css">
 
@@ -64,6 +65,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		box-shadow: 0 0 8px #D0D0D0;
 	}
 	</style>
+
+	<script type="text/javascript">
+		function eliminar(id,base_url){
+			let confirmar = confirm('Desea eliminar el registro');
+			if(confirmar){
+				location.href=base_url+'index.php/usuario/eliminar/'+id;
+			}
+		}
+	</script>
 </head>
 <body>
 
@@ -71,15 +81,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<h1><?= $titulo; ?></h1>
 
 	<div id="body">
+		<button class="btn btn-success mb-2"><a href="formularioRegistrar/usuario">Agregar Usuario</a></button>
 		<?php
-		$tabla = '<table border="1">';
-			$tabla .= '<thead><tr><th>Usuario</th><th>password</th><th>Rol</th><th>Estado</th><th>Acción</th></tr></thead><tbody>'; 
+		$cont=1;
+		$tabla = '<table class="table table-striped">';
+			$tabla .= '<thead><tr><th scope="col">#</th><th scope="col">Usuario</th><th>password</th><th>Rol</th><th>Estado</th><th>Acción</th></tr></thead><tbody>'; 
 			foreach ($resultado as $value) {
-				$tabla .= '<tr><td>'.$value->usuario.'</td><td>****</td><td>'.$value->rol.'</td><td>'.$value->estado.'</td><td><a href="modificar/'.$value->id.'">modificar</a> <a href="eliminar/'.$value->id.'">eliminar</a></td></tr>';
+				$tabla .= '<tr><td scope="row">'.$cont.'</td><td>'.$value->usuario.'</td><td>****</td><td>'.$value->rol.'</td><td>'.$value->estado.'</td><td><label class="btn btn-info"><a href="modificar/'.$value->id.'">modificar</a></label> <label class="btn btn-danger"><a href="javascript: avoid(0);" onclick="eliminar('.$value->id.',\''.base_url().'\')" >eliminar</a></label></td></tr>';
+				$cont++;
 			}
 			$tabla .= '</tbody></table>';
 			echo $tabla;
 		?>
+		<br>
+		<a href="<?= base_url(); ?>">Salir</a>
 	</div>
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>

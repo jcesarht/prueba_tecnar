@@ -28,7 +28,7 @@ class usuariosModel extends CI_model
 	function consultar($usuario = '',$password = ''){
 		if($usuario != '' || $password != ''){
 			$this->db->where("usuario",$usuario);
-			$this->db->where("usuario",$password);
+			$this->db->where("password",$password);
 		}
 		$consulta = $this->db->get('usuarios');
 		$error = $this->db->error();
