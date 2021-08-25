@@ -12,6 +12,7 @@ class Usuario extends CI_Controller {
 	{
 		$info['error'] = '';
 		$info['vista_anterior'] = 'javascript: history.go(-1)';
+		$info['vista'] = $vista;
 		if($vista == 'login')
 		{
 			$info['vista_anterior'] = base_url().'index.php/login/logear';
@@ -26,14 +27,22 @@ class Usuario extends CI_Controller {
 		$usuario = $this->input->post("usuario");
 		$password = $this->input->post("password");
 		$rol = $this->input->post("rol");
+		$vista_anterior = $this->input->post("vista_anterior");
 		$resultado = $this->usuariosModel->registrar($usuario,$password,$rol);
-		
 		if($resultado['error'] == false)
 		{
 			redirect('usuario/confirmado');
 		}else
 		{
 			$info['error'] = $resultado['mensaje'];
+			$info['vista_anterior'] = 'javascript: history.go(-1)';
+			$info['vista'] = $vista_anterior;
+			if($vista_anterior == 'login')
+			{
+				$info['vista_anterior'] = base_url().'index.php/login/logear';
+			}else if($vista_anterior == 'usuario'){
+				$info['vista_anterior'] = base_url().'index.php/usuario/dashboard';
+			}
 			$this->load->view('usuario/registrar',$info);
 		}
 	}

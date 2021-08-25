@@ -74,7 +74,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div id="body">
 		<div><font color="red"><?=$error ?></font></div>
 		<div class="form-row mt-5">
-			<form method="post"	action="registrar">
+			<form method="post"	action="<?= base_url()?>index.php/usuario/registrar">
+				<input type="hidden" name="vista_anterior" value="<?= $vista; ?>" >
 				<div class="form-row">
 					Usuario: <input type="text" class="form-control" name="usuario" autocomplete="off" required="required">
 				</div>
